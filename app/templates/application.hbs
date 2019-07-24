@@ -15,6 +15,16 @@
       <h2 class="text-l border-b-2 border-gray-500 mb-8">
         Actions
       </h2>
+      <div class="mb-4">
+        Add
+        {{input
+          class="w-12 mx-1 text-center px-1"
+          type="number"
+          value=numRows
+          enter=(action "addRows")
+        }}
+        rows.
+      </div>
     </div>
   </div>
 </div>
