@@ -4,7 +4,7 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'ember-table-demo',
     environment,
-    rootURL: '/',
+    rootURL: process.env.ROOT_URL || '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

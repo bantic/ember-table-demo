@@ -1,0 +1,24 @@
+@import 'node_modules/tailwindcss/dist/base';
+@import 'node_modules/tailwindcss/dist/components';
+@import 'node_modules/tailwindcss/dist/utilities';
+
+@import './table-col-reorder';
+
+.stock-table {
+  height: 40vh;
+
+  th {
+    background-color: darken($color: #ffffff, $amount: 60);
+    color: darken($color: #fff, $amount: 10);
+  }
+
+  td {
+    border-bottom: 1px solid slategray;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  & td + td {
+    border-left: 1px solid slategray;
+  }
+}

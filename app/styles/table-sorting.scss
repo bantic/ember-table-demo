@@ -1,0 +1,17 @@
+.et-sort-indicator {
+  &:before {
+    display: inline-block;
+    border: none;
+
+    // This prevents the icon from affecting the base-line of the surrounding
+    // text, so it doesn't move around
+    line-height: 1;
+
+    transform: rotate(0deg);
+    content: '\25be'; // down triangle
+  }
+
+  &.is-ascending:before {
+    transform: rotate(180deg);
+  }
+}
