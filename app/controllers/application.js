@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { compare } from '@ember/utils';
 
 function createSymbol() {
   let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -45,6 +46,19 @@ export default Controller.extend({
   }),
 
   numRows: 25,
+
+  compareFunction: computed(function() {
+    return (a, b) => {
+      let isNumeric = !Number.isNaN(parseFloat(a));
+
+      if (isNumeric) {
+        a = parseFloat(a);
+        b = parseFloat(b);
+      }
+
+      return compare(a, b);
+    };
+  }),
 
   actions: {
     addRows() {
