@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { compare } from '@ember/utils';
+import { set } from '@ember/object';
 
 function createSymbol() {
   let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -23,7 +24,8 @@ function formatPrice(price) {
 function createRow() {
   return {
     symbol: createSymbol(),
-    price: formatPrice(createPrice())
+    price: formatPrice(createPrice()),
+    change: 0
   };
 }
 
@@ -33,11 +35,22 @@ function createRows(num) {
     .map(createRow);
 }
 
+function adjustPrice(price) {
+  let delta = (Math.random() * 30) / 100; // [0.0,0.3)
+  let dir = Math.random() < 0.5 ? -1 : 1;
+  return price * (1 + dir * delta);
+}
+
+function formatChange(change) {
+  return change.toFixed(2);
+}
+
 export default Controller.extend({
   columns: computed(function() {
     return [
       { name: 'Ticker Symbol', valuePath: 'symbol', textAlign: 'center' },
-      { name: 'Price (USD)', valuePath: 'price', textAlign: 'right' }
+      { name: 'Price (USD)', valuePath: 'price', textAlign: 'right' },
+      { name: 'Change (USD)', valuePath: 'change', textAlign: 'right' }
     ];
   }),
 
@@ -63,6 +76,17 @@ export default Controller.extend({
   actions: {
     addRows() {
       this.rows.pushObjects(createRows(parseInt(this.numRows)));
+    },
+
+    adjustPrices() {
+      this.rows.forEach(row => {
+        if (Math.random() < 0.4) {
+          let currentPrice = parseFloat(row.price);
+          let newPrice = adjustPrice(currentPrice);
+          set(row, 'price', formatPrice(newPrice));
+          set(row, 'change', formatChange(newPrice - currentPrice));
+        }
+      });
     }
   }
 });
