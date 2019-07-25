@@ -39,6 +39,16 @@
           Adjust prices
         </button>
       </div>
+      <div class="mb-4">
+        <button
+          class="text-white rounded p-2
+            {{if isAnimating "bg-red-500" "bg-green-500"}}"
+          {{action "animatePrices"}}
+        >
+          {{if isAnimating "Stop animating" "Animate"}}
+          prices
+        </button>
+      </div>
     </div>
   </div>
 </div>

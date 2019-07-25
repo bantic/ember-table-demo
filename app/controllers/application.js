@@ -2,6 +2,8 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { compare } from '@ember/utils';
 import { set } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import { task, timeout } from 'ember-concurrency';
 
 function createSymbol() {
   let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -73,6 +75,15 @@ export default Controller.extend({
     };
   }),
 
+  animatePricesTask: task(function*() {
+    while (true) {
+      yield timeout(1000);
+      this.send('adjustPrices');
+    }
+  }),
+
+  isAnimating: reads('animatePricesTask.isRunning'),
+
   actions: {
     addRows() {
       this.rows.pushObjects(createRows(parseInt(this.numRows)));
@@ -87,6 +98,14 @@ export default Controller.extend({
           set(row, 'change', formatChange(newPrice - currentPrice));
         }
       });
+    },
+
+    animatePrices() {
+      if (this.isAnimating) {
+        this.animatePricesTask.cancelAll();
+      } else {
+        this.animatePricesTask.perform();
+      }
     }
   }
 });
