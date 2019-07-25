@@ -14,12 +14,16 @@
           onUpdateSorts=(action (mut sorts))
           compareFunction=compareFunction
         }}
-        {{t.body
+        {{#t.body
           rows=rows
           selection=selection
           onSelect=(action (mut selection))
-          checkboxSelectionMode="none"
+          checkboxSelectionMode="none" as |b|
         }}
+          {{#b.row class=(row-class b.rowValue) as |r|}}
+            {{#r.cell as |cellValue|}}{{cellValue}}{{/r.cell}}
+          {{/b.row}}
+        {{/t.body}}
       {{/ember-table}}
     </div>
     <div class="bg-gray-200 mx-auto mt-4 p-4">
