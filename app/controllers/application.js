@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { compare } from '@ember/utils';
-import { set } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
@@ -90,14 +89,21 @@ export default Controller.extend({
     },
 
     adjustPrices() {
-      this.rows.forEach(row => {
+      let newRows = this.rows.map(row => {
+        let currentPrice = parseFloat(row.price);
+        let newPrice = currentPrice;
+
         if (Math.random() < 0.4) {
-          let currentPrice = parseFloat(row.price);
-          let newPrice = adjustPrice(currentPrice);
-          set(row, 'price', formatPrice(newPrice));
-          set(row, 'change', formatChange(newPrice - currentPrice));
+          newPrice = adjustPrice(currentPrice);
         }
+
+        return {
+          ...row,
+          price: formatPrice(newPrice),
+          change: formatChange(newPrice - currentPrice)
+        };
       });
+      this.set('rows', newRows);
     },
 
     animatePrices() {
