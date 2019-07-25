@@ -26,7 +26,8 @@ function createRow() {
   return {
     symbol: createSymbol(),
     price: formatPrice(createPrice()),
-    change: 0
+    change: 0,
+    pctChange: 0
   };
 }
 
@@ -46,12 +47,17 @@ function formatChange(change) {
   return change.toFixed(2);
 }
 
+function formatPercentChange(pctChange) {
+  return `${(100 * pctChange).toFixed(0)}%`;
+}
+
 export default Controller.extend({
   columns: computed(function() {
     return [
       { name: 'Ticker Symbol', valuePath: 'symbol', textAlign: 'center' },
       { name: 'Price (USD)', valuePath: 'price', textAlign: 'right' },
-      { name: 'Change (USD)', valuePath: 'change', textAlign: 'right' }
+      { name: 'Change (USD)', valuePath: 'change', textAlign: 'right' },
+      { name: '% Change (USD)', valuePath: 'pctChange', textAlign: 'right' }
     ];
   }),
 
@@ -101,7 +107,10 @@ export default Controller.extend({
         return {
           ...row,
           price: formatPrice(newPrice),
-          change: formatChange(newPrice - currentPrice)
+          change: formatChange(newPrice - currentPrice),
+          pctChange: formatPercentChange(
+            (newPrice - currentPrice) / currentPrice
+          )
         };
       });
       this.set('rows', newRows);
