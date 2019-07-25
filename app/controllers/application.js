@@ -89,7 +89,8 @@ export default Controller.extend({
     },
 
     adjustPrices() {
-      let newRows = this.rows.map(row => {
+      let { rows, selection } = this;
+      let newRows = rows.map(row => {
         let currentPrice = parseFloat(row.price);
         let newPrice = currentPrice;
 
@@ -104,6 +105,11 @@ export default Controller.extend({
         };
       });
       this.set('rows', newRows);
+
+      let newSelection = (selection || []).map(selected => {
+        return this.rows.find(row => row.symbol === selected.symbol);
+      });
+      this.set('selection', newSelection);
     },
 
     animatePrices() {
