@@ -7,7 +7,12 @@
   <div class="w-9/12 mx-auto">
     <div class="stock-table bg-gray-200 mx-auto p-2">
       {{#ember-table as |t|}}
-        {{t.head columns=columns widthConstraint="eq-container"}}
+        {{t.head
+          columns=columns
+          widthConstraint="eq-container"
+          sorts=sorts
+          onUpdateSorts=(action (mut sorts))
+        }}
         {{t.body rows=rows}}
       {{/ember-table}}
     </div>
