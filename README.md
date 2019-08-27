@@ -20,3 +20,4 @@ Demo sites are deployed to github pages at https://bantic.github.io/ember-table-
 - live-updates [demo](https://bantic.github.io/ember-table-demo/live-updates/) [diff](https://github.com/bantic/ember-table-demo/compare/sorting...live-updates)
 - selection [demo](https://bantic.github.io/ember-table-demo/selection/) [diff](https://github.com/bantic/ember-table-demo/compare/live-updates...selection)
 - row-colors [demo](https://bantic.github.io/ember-table-demo/row-colors/) [diff](https://github.com/bantic/ember-table-demo/compare/selection...row-colors)
+more changes 
