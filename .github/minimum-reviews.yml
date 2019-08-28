@@ -12,4 +12,4 @@ notReadyMessage: 'Pending review approvals'
 
 # Status to set the commit to when waiting for reviews
 # 'failure, error, and pending' are the suggested options
-notReadyState: 'pending'
+notReadyState: 'failure'
