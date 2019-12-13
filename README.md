@@ -10,6 +10,12 @@ progressively adding more sophisticated features.
 - `ember serve`
 - Visit http://localhost:4200 or http://0.0.0.0:4200
 
+## Ember NYC Presentation
+
+[Slides from Ember NYC 12.12.2019](https://docs.google.com/presentation/d/1cVblQt09KmkFbXBvDrxdl072k3WG_BKOMjnlgJm_qNA/edit#slide=id.g75e8dc6961_0_0)
+
+![Slides from Ember NYC 12.12.2019](./ember-table-nyc-slides-screenshot.png)
+
 ## Steps
 
 Demo sites are deployed to github pages at https://bantic.github.io/ember-table-demo/index.html
@@ -20,4 +26,4 @@ Demo sites are deployed to github pages at https://bantic.github.io/ember-table-
 - live-updates [demo](https://bantic.github.io/ember-table-demo/live-updates/) [diff](https://github.com/bantic/ember-table-demo/compare/sorting...live-updates)
 - selection [demo](https://bantic.github.io/ember-table-demo/selection/) [diff](https://github.com/bantic/ember-table-demo/compare/live-updates...selection)
 - row-colors [demo](https://bantic.github.io/ember-table-demo/row-colors/) [diff](https://github.com/bantic/ember-table-demo/compare/selection...row-colors)
-more changes 
+  more changes
